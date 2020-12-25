@@ -104,13 +104,21 @@ class Chess:
     def queen_movements(self, notation):
         return self.tower_movements(notation) + self.bishop_movements(notation)
 
+    def horse_movements(self, notation, dirs=((1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), (-2, -1))):
+        if len(dirs) > 0:
+            movement = self.motion_summary(notation, dirs[-1][0], dirs[-1][1])
+            if movement:
+                movement += "."
+            return movement + self.horse_movements(notation, dirs[:-1])
+        else:
+            return ""
+
     def position_movements(self, notation):
         piece = self.notation_piece(notation)
         if piece.startswith("T"):
             print(piece, notation + ":", self.tower_movements(notation))
         if piece.startswith("C"):
-            # Codigo para caballo
-            print("Aun no se ha implementado")
+            print(piece, notation + ":", self.horse_movements(notation))
         if piece.startswith("A"):
             print(piece, notation + ":", self.bishop_movements(notation))
         if piece.startswith("D"):
@@ -123,16 +131,14 @@ class Chess:
             print("Aun no se ha implementado")
 
 
-pcs = "Tn.Cn.An.  .Rn.An.Cn.Tn." \
+pcs = "Tn.Cn.An.Dn.Rn.An.Cn.Tn." \
       "Pn.Pn.Pn.Pn.Pn.Pn.Pn.Pn." \
       "  .  .  .  .  .  .  .  ." \
-      "  .Dn.  .  .Ab.  .  .  ." \
-      "  .  .  .Tn.  .  .  .  ." \
+      "  .  .  .  .Cb.  .  .  ." \
+      "  .  .  .  .  .  .  .  ." \
       "  .  .  .  .  .  .  .  ." \
       "Pb.Pb.Pb.Pb.Pb.Pb.Pb.Pb." \
-      "Tb.Cb.Ab.Db.Rb.  .Cb.Tb"
+      "Tb.Cb.Ab.Db.Rb.Ab.  .Tb"
 chess = Chess(pcs)
 print(chess)
-chess.position_movements("d4")
 chess.position_movements("e5")
-chess.position_movements("b5")
