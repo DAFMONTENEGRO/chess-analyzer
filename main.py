@@ -131,14 +131,17 @@ class Chess:
             print("Aun no se ha implementado")
 
 
-pcs = "Tn.Cn.An.Dn.Rn.An.Cn.Tn." \
+pcs = "Tn.Cn.An.  .Rn.  .Cn.Tn." \
       "Pn.Pn.Pn.Pn.Pn.Pn.Pn.Pn." \
+      "  .  .  .  .An.  .  .Tb." \
+      "  .  .  .Dn.  .  .  .  ." \
       "  .  .  .  .  .  .  .  ." \
-      "  .  .  .  .Cb.  .  .  ." \
-      "  .  .  .  .  .  .  .  ." \
-      "  .  .  .  .  .  .  .  ." \
+      "  .  .Cb.  .  .  .  .  ." \
       "Pb.Pb.Pb.Pb.Pb.Pb.Pb.Pb." \
-      "Tb.Cb.Ab.Db.Rb.Ab.  .Tb"
+      "Tb.  .Ab.Db.Rb.Ab.Cb.  "
 chess = Chess(pcs)
 print(chess)
-chess.position_movements("e5")
+chess.position_movements("c3")
+chess.position_movements("d5")
+chess.position_movements("e6")
+chess.position_movements("h6")
